@@ -1,7 +1,8 @@
 // server.js
 import { WebSocketServer } from "ws";
 
-const wss = new WebSocketServer({ port: 8080 });
+const port = process.env.PORT || 8080;
+const wss = new WebSocketServer({ port });
 
 wss.on("connection", (ws) => {
   console.log("Cliente conectado");
@@ -18,7 +19,7 @@ wss.on("connection", (ws) => {
     });
   });
 
-  ws.on("close", () => console.log(" liente desconectado"));
+  ws.on("close", () => console.log("Cliente desconectado"));
 });
 
-console.log("Servidor WebSocket corriendo en ws://localhost:8080");
+console.log(`Servidor WebSocket corriendo en puerto ${port}`);
